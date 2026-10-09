@@ -8,7 +8,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 type ExtensionPreferences = {
-  /** Directory 1 - First directory path containing images to browse (.png and .svg files) */
+  /** Directory 1 - First directory containing supported images */
   "directory1": string,
   /** Directory 2 (Optional) - Second directory path containing images to browse */
   "directory2"?: string,
@@ -18,8 +18,12 @@ type ExtensionPreferences = {
   "directory4"?: string,
   /** Directory 5 (Optional) - Fifth directory path containing images to browse */
   "directory5"?: string,
+  /** Scan Subdirectories - Include images from nested folders */
+  "scanSubdirectories": boolean,
   /** Default Directory - Which directory to show by default when opening the extension */
-  "defaultDirectory": "all" | "directory1" | "directory2" | "directory3" | "directory4" | "directory5",
+  "defaultDirectory": "all" | "favorites" | "recent" | "directory1" | "directory2" | "directory3" | "directory4" | "directory5",
+  /** Image Sorting - Default order used when browsing images */
+  "sortOrder": "nameAsc" | "nameDesc" | "modifiedDesc" | "sizeDesc",
   /** Enable Image Cache - Cache scanned images for faster loading. Disable to always scan directories fresh. */
   "enableCache": boolean
 }

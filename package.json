@@ -1,9 +1,9 @@
 {
     "$schema": "https://www.raycast.com/schemas/extension.json",
     "name": "image-picker-ext",
-    "version": "1.4.6",
-    "title": "Logo Picker",
-    "description": "Browse, preview and paste logos from directories with grid view",
+    "version": "2.2.0",
+    "title": "Image Picker",
+    "description": "Browse, preview, copy, and paste images from directories",
     "icon": "icon.png",
     "author": "dfs",
     "categories": [
@@ -16,8 +16,8 @@
     "commands": [
         {
             "name": "image-picker",
-            "title": "Search Logos",
-            "description": "Browse, preview and paste logos from directories with grid view",
+            "title": "Browse Images",
+            "description": "Browse, preview, copy, and paste images from directories",
             "mode": "view"
         }
     ],
@@ -25,7 +25,7 @@
         {
             "name": "directory1",
             "title": "Directory 1",
-            "description": "First directory path containing images to browse (.png and .svg files)",
+            "description": "First directory containing supported images",
             "type": "directory",
             "required": true
         },
@@ -58,6 +58,15 @@
             "required": false
         },
         {
+            "name": "scanSubdirectories",
+            "title": "Scan Subdirectories",
+            "description": "Include images from nested folders",
+            "type": "checkbox",
+            "label": "Search for images recursively",
+            "required": false,
+            "default": true
+        },
+        {
             "name": "defaultDirectory",
             "title": "Default Directory",
             "description": "Which directory to show by default when opening the extension",
@@ -68,6 +77,14 @@
                 {
                     "title": "All Directories",
                     "value": "all"
+                },
+                {
+                    "title": "Favorites",
+                    "value": "favorites"
+                },
+                {
+                    "title": "Recently Used",
+                    "value": "recent"
                 },
                 {
                     "title": "Directory 1",
@@ -92,6 +109,32 @@
             ]
         },
         {
+            "name": "sortOrder",
+            "title": "Image Sorting",
+            "description": "Default order used when browsing images",
+            "type": "dropdown",
+            "required": false,
+            "default": "nameAsc",
+            "data": [
+                {
+                    "title": "Name (A–Z)",
+                    "value": "nameAsc"
+                },
+                {
+                    "title": "Name (Z–A)",
+                    "value": "nameDesc"
+                },
+                {
+                    "title": "Recently Modified",
+                    "value": "modifiedDesc"
+                },
+                {
+                    "title": "Largest Files",
+                    "value": "sizeDesc"
+                }
+            ]
+        },
+        {
             "name": "enableCache",
             "title": "Enable Image Cache",
             "description": "Cache scanned images for faster loading. Disable to always scan directories fresh.",
@@ -102,15 +145,15 @@
         }
     ],
     "dependencies": {
-        "@raycast/api": "^1.40.0"
+        "@raycast/api": "^2.7.2"
     },
     "devDependencies": {
-        "@raycast/eslint-config": "^1.0.6",
-        "@types/node": "18.18.4",
+        "@raycast/eslint-config": "^2.2.0",
+        "@types/node": "22.19.17",
         "@types/react": "19.0.10",
-        "eslint": "^8.51.0",
-        "prettier": "^3.0.3",
-        "typescript": "^5.2.2"
+        "eslint": "^9.39.4",
+        "prettier": "^3.6.2",
+        "typescript": "^5.9.3"
     },
     "scripts": {
         "build": "ray build -e dist",
